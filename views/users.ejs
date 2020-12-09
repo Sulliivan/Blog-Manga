@@ -1,0 +1,38 @@
+<%- include('./partials/navbarDashboard.ejs')-%>
+
+
+<div class="page">
+  <div class="title">
+    <h1>Liste Utilisateurs</h1>
+  </div>
+    <div class="container">
+        <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+
+            <tbody>
+            <% users.forEach(function(entry) {%>
+              <tr>
+                <th><%=entry.userId%></th>
+                <td><%=entry.firstname%></td>
+                <td><%=entry.lastname%></td>
+                <td><%=entry.email%></td>
+              </tr>
+            <%});%>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+  
+  <%- include('./partials/footer')-%>
+

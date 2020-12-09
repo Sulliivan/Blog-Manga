@@ -5,21 +5,39 @@ const express = require('express')
 ,     path = require('path')
 ,     port = 3000
 const fileUpload = require('express-fileupload');
+const connectFlash = require('connect-flash')
+const session = require('express-session');
+
+
+////////////////////////////////////////////////////////////
+
+// Express-session  
+app.use(session({
+  secret: 'shhuuuuut',
+  resave: false,
+  saveUninitialized: true, 
+  name: 'biscuit',
+  cookie: {  maxAge: 24 * 60 * 60 * 7 * 1000}
+}))
+// Connect Flash
+app.use(connectFlash())  // utilise zone flash pour stocker des messages et les retrenscrires
+
+
 app.use(fileUpload());
-
-
 // .env
-require('dotenv').config()
-
+require('dotenv').config() // utiliser le fichier env qui est un fichier
 // Middleware - Parser
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-
-// EJS
+// EJS moteur de templating avec utilisation des fichier statique
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
-// MySQL
+
+////////////////////////////////////////////////////////////
+
+
+// MySQL Connection à la base de donnée
 const db =  mysql.createConnection(
   {
     host: process.env.DB_HOST,
@@ -35,22 +53,24 @@ db.connect((err) => {
 
 const query = util.promisify(db.query).bind(db);
 global.query = query;
+////////////////////////////////////////////////////////////
 
 // Router
-const singleRouter = require ('./routes/singlePage');
-const pageRouter = require ('./routes/page');
-const dashboardRouter = require ('./routes/dashboard.js');
-
-// const registRouter = require ('./routes/auth');
-// const resetPassword = require('./routes/reset-password')
+const singleRouter = require ('./routes/singlePage'); // page d'un article
+const pageRouter = require ('./routes/page'); // page principal
+const dashboardRouter = require ('./routes/dashboard.js'); // page admin
+const usersRouter = require ('./routes/users'); // page connection d'un user
+const createRouter = require ('./routes/create'); // page d'inscription
 
 // URL
 app.use('/singlePage', singleRouter);
 app.use('/page', pageRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/users', usersRouter);
+app.use('/create', createRouter);
 
-// app.use('/auth', registRouter);
-// app.use('/reset-password', resetPassword);
+
+////////////////////////////////////////////////////////////
 
 // 404
 app.get('*', function(req, res, next){
@@ -58,6 +78,8 @@ app.get('*', function(req, res, next){
   res.render('404.ejs');
 });
  
+////////////////////////////////////////////////////////////
+
 // Listen
 app.listen(port, () => {
   console.log(`Tourne sur le port : ${port}`);

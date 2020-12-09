@@ -109,4 +109,20 @@ router.put('/admin/:postId', async(req, res) => {
     }
 });
 
+////////////////////////////////////////////////////////////////////
+//////////////////////// UTILISATEUR  //////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+router.get('/users', async (req, res) => {
+    try {
+        const users = await query("SELECT * FROM user")
+        res.render("users", {
+            users
+        });
+    } catch (err) {
+        res.send(err)
+    }
+});
+
+
 module.exports = router;

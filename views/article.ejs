@@ -1,9 +1,16 @@
-<%- include('./partials/head')-%>
+<%- include('./partials/navbarArticle')-%>
+<link rel="stylesheet" href="/css/article.css">
 
-<h1>article</h1>
-
-
-
-
-<%- include('./partials/footer')-%>
-
+    <div class="container">
+      <% articles.forEach(function(entry) {%>
+      <div class="photo">
+        <img src="<%=entry.image%>" class="card-img" alt="..." style="width:12em;" name="image">
+      </div>
+      <div class="text">
+        <h1><%=entry.title%></h1>
+        <p><%-entry.content%></p>
+        <%});%>
+      </div> 
+   </div>
+   
+ 

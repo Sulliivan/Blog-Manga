@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/register.css">
+
+<div class="logo">
+  <a href="/page/index"><img src="/images/logo.png" alt="logo"></a>
+</div>
+
+  <div class="page">
+      <div class="container">
+
+        <form method="POST" action="/auth/register">    
+            <% if(messageError.length > 0) { %>
+              <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= messageError %>
+              </div>
+            <%}%> 
+       
+                  <div class="form-group">
+                    <h1>Creer un compte</h1>
+                      <label for="exampleInputEmail1">Prenom</label>
+                      <input type="text" class="form-control" name="firstname">
+                      <label for="exampleInputEmail1">Nom</label>
+                      <input type="text" class="form-control" name="lastname">
+                      <label for="exampleInputEmail1">Email Address</label>
+                      <input type="email" class="form-control" name="email">
+                      <label for="exampleInputPassword1">Mot de passe</label>
+                      <input type="password" class="form-control" name="password">
+                      <label for="exampleInputPassword1">Valider Mot de passe</label>
+                      <input type="password" class="form-control" name="password2">
+
+                      <label for="exampleInputPassword1">rolesId</label>
+                      <input type="text" class="form-control" name="rolesId">
+
+
+                    </div>
+                    <button type="submit" class="btn ">Créer compte</button>
+                </div>
+
+            </form>
+          </div>
+        </div>
+    
+
+<%- include('./partials/footer')-%>
