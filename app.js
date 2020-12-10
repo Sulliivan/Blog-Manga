@@ -11,6 +11,7 @@ const session = require('express-session');
 
 ////////////////////////////////////////////////////////////
 
+
 // Express-session  
 app.use(session({
   secret: 'shhuuuuut',
@@ -61,16 +62,42 @@ const pageRouter = require ('./routes/page'); // page principal
 const dashboardRouter = require ('./routes/dashboard.js'); // page admin
 const usersRouter = require ('./routes/users'); // page connection d'un user
 const createRouter = require ('./routes/create'); // page d'inscription
+const verifAuth = require('./middleware/auth.middleware');
+const verifAuthAdmin = require ('./middleware/admin.middleware')
+
+
+app.use (function (req, res, next){
+  const userID = req.session.userId
+  const userNAME = req.session.firstname
+  const userROLES = req.session.roleId
+
+// console.log(req.session.firstname,"firstname");
+// console.log(req.session.userId,"user");
+// console.log(req.session.roleId,"role");
+ res.locals.usersession = {userID, userNAME, userROLES}
+console.log(res.locals.usersession);
+  next()
+})
 
 // URL
-app.use('/singlePage', singleRouter);
+app.use('/singlePage', verifAuth, singleRouter);
 app.use('/page', pageRouter);
-app.use('/dashboard', dashboardRouter);
+app.use('/dashboard', verifAuthAdmin, dashboardRouter);
 app.use('/users', usersRouter);
 app.use('/create', createRouter);
 
-
 ////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+///////////////Login - Logout////////////////////
+
+
+app.use('*', (req, res, next)=>{
+  res.locals.message = req.session.message
+  delete req.session.message
+  next()
+})
+
 
 // 404
 app.get('*', function(req, res, next){

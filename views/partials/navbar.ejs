@@ -8,10 +8,16 @@
             </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li><a class="nav-link" href="">Bonjour</a></li>
-            <!-- <li><a class="nav-link" href="/users/logout">Logout</a></li>
-            <li><a class="nav-link" href="/admin/dashboardAdmin">Admin</a></li> -->
-            <li><a class="nav-link" href="/users/login">Login</a></li>    
+            <% if (usersession.userID != undefined) { %>
+              <li><a class="nav-link" href="/users/profil/<%= usersession.userID%>">Bonjour <%= usersession.userNAME%></a></li>
+              <li><a class="nav-link" href="/users/logout">Logout</a></li>
+            <% if (usersession.userROLES === 1) {%>
+              <li><a class="nav-link" href="/dashboard/admin">Admin</a></li>
+            <% }else  {%>
+              <% } %>
+            <% }else  {%>
+              <li><a class="nav-link" href="/users/login">Login</a></li>  
+            <% } %>
           </ul>
         </div>
       </div>

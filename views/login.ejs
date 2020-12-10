@@ -1,1 +1,71 @@
-<h1>LOGIN</h1>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/login.css">
+
+
+<div class="page">
+<div class="container">
+    <form method="POST" action="/users/login"> 
+      <div class="headerContent">
+          <div class="logo">
+            <a href="/page/index"><img src="/images/MangaViolet.png" alt="logo"></a>
+          </div>
+          <div class="pass">
+            <a href="#" data-target="#pwdModal" data-toggle="modal">Forgot my password</a>
+          </div>
+      </div>  
+
+      <% if(messageSuccess .length > 0) { %>
+        <div class="alert alert-danger">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= messageSuccess %>
+        </div>
+      <%}%>
+      
+          <div class="form-group">
+            <h1>Connexion</h1>
+              <label for="exampleInputEmail1">Email Address</label>
+              <input type="email" class="form-control" name="email">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" name="password">
+
+              <button type="submit" class="btn">Connexion</button>
+          </div>
+    </form>
+</div>
+</div>
+
+
+
+<!-- Modal -->
+<div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+      <h1 class="text-center">Mot de passe Oublié</h1>
+  </div>
+  <div class="modal-body">
+      <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="text-center">
+                      
+                      <p>Si vous avez oubliez votre mot de passe vous pouvez le reiniatiler ici.</p>
+                        <div class="panel-body">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control input-lg" placeholder="E-mail Address" name="email" type="email">
+                                </div>
+                                <input class="btn btn-lg btn-primary btn-block" value="Send My Password" type="submit">
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+</div>
+</div>
+</div>
+
+<%- include('./partials/footer')-%>
