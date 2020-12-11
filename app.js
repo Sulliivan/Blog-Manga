@@ -75,7 +75,7 @@ app.use (function (req, res, next){
 // console.log(req.session.userId,"user");
 // console.log(req.session.roleId,"role");
  res.locals.usersession = {userID, userNAME, userROLES}
-console.log(res.locals.usersession);
+// console.log(res.locals.usersession);
   next()
 })
 

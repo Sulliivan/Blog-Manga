@@ -9,7 +9,7 @@
   <div class="page">
       <div class="container">
 
-        <form method="POST" action="/auth/register">    
+        <form method="POST" action="/create/account">    
             <% if(messageError.length > 0) { %>
               <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -29,11 +29,6 @@
                       <input type="password" class="form-control" name="password">
                       <label for="exampleInputPassword1">Valider Mot de passe</label>
                       <input type="password" class="form-control" name="password2">
-
-                      <label for="exampleInputPassword1">rolesId</label>
-                      <input type="text" class="form-control" name="rolesId">
-
-
                     </div>
                     <button type="submit" class="btn ">Créer compte</button>
                 </div>
@@ -42,5 +37,14 @@
           </div>
         </div>
     
+
+
+        <!-- Rassurez-vous, Goku n’est pas mort, vous ne vous êtes pas fait spoiler. Il s’agissait néanmoins de comprendre là où je souhaitais réellement en venir. En somme, les épisodes de Dragon Ball sont scindés en deux parties, entrecoupés d’un petite interlude au milieu. Celui-ci intervient à, environ, la moitié de l’épisode. Néanmoins, parfois, le titre vous spoile tellement que les dix premières minutes de l’épisode ne servent à rien.
+
+Exemple, et je choisis volontairement un exemple assez éloigné pour que ceux qui sont en retard puissent suivre le rythme : épisode 104. Je vous la refais grosso-modo. L'un des Prime Troopers, Dyspo, défie Hit en duel. On assiste alors à un combat plutôt badass entre deux protagonistes du tournoi, où chacun use de stratégie pour faire tomber l’autre. Alors que Hit parvient à faire tomber son adversaire en dehors des limites du terrain, Kunshi, un autre membre de l’univers 11, se ramène pour sauver son pote. A partir de là, les deux s’associent pour filer une sacrée déculottée à Hit. Sauf que… Goku intervient à son tour, vers la moitié de l’épisode, et fait équipe avec Hit pour les combattre.
+Voilà. Maintenant, je vous mets le titre de l’épisode : "L'éclosion d'une bataille plus rapide que la lumière ! L'alliance de Goku et Hit !!". POUR-QUOI. Tout l’épisode est absolument gâché, anéanti, bafoué. Et pourtant : il est très bon ! On est spoilés du début à la fin, on sait tout. Tout sur tout. On sait que Dyspo ne va pas se faire éliminer que son pote va le sauver puisqu’il va combattre à la vitesse de la lumière. Et quand Hit se fait rétamer, on sait aussi que Goku va arriver en mode badass pour les dégommer. Alors, diantre, pourquoi ?
+ -->
+
+
 
 <%- include('./partials/footer')-%>

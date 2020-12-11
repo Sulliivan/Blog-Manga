@@ -1,1 +1,154 @@
-<H1>profil</H1>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/profil.css">
+
+</head>
+
+<body>
+  <!-- nav bar -->
+  <nav>
+    <div class="navbar">
+      <div class="logo">
+        <a href="/page/index"><img src="/images/logoBlanc.png" alt="logo"></a>
+      </div>
+
+      <ul class="ul">
+        <% if (usersession.userID > 0) { %>
+        <li><a class="nav-link" href="/users/profil/<%=usersession.userID%>">Bonjour <%= usersession.userNAME %></a>
+        </li>
+        <li><a class="nav-link" href="/users/logout">Logout</a></li>
+        <% }else  {%>
+        <li><a class="nav-link" href="/users/login">Login</a></li>
+        <% } %>
+      </ul>
+    </div>
+
+
+    <!-- card du user-->
+    <% profil.forEach(function(entry) {%>
+    <div class="card" style="width: 20rem; height: 600px;">
+      <img src="/images/avatar.jpg" class="card-img-top" alt="..." style="width: 15rem;">
+      <div class="card-body">
+        <p class="card-text">PRENOM : <%=entry.firstname%></p>
+        <p class="card-text">NOM : <%=entry.lastname%></p>
+
+        <p class="card-text">EMAIL : <%=entry.email%>
+          <button class="btnhead" type="submit" data-toggle="modal" data-target="#exampleModalPreview">Changer
+            l'Email</button>
+        </p>
+
+        <p class="Password">PASSWORD : ************
+          <button class="btnhead" type="submit" data-toggle="modal" data-target="#exampleModalPreview2">Changer mot de
+            passe </button>
+        </p>
+
+        <p>
+          <button type="submit" class="btnhead" data-toggle="modal" data-target="#exampleModalPreview3" name="userId">Supprimer Profile</button>
+        </p>
+
+      </div>
+    </div>
+
+    <!-- Modal Changer MDP -->
+    <form action="/users/profil/<%=entry.userId%>?_method=PUT" method="POST">
+      <div class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalPreviewLabel">Changer votre Email.</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <label data-error="wrong" data-success="right" for="newPassConfirm">Nouvel Email</label>
+              <input type="email" id="newPass" class="form-control" name="email">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Change password</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Modal Changer PASSWORD -->
+    <form action="/users/profil/<%=entry.userId%>?_method=PUT" method="POST">
+      <div class="modal fade right" id="exampleModalPreview2" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalPreviewLabel">Changer votre Mot de passe.</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <label data-error="wrong" data-success="right" for="newPassConfirm"> Nouveau Mot de passe</label>
+              <input type="text" id="newPass" class="form-control" name="password">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Change password</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+        <!-- Modal supprimer compte -->
+        <form action="/users/profil/<%=entry.userId%>?_method=DELETE" method="POST">
+          <div class="modal fade right" id="exampleModalPreview3" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>Etes vous sur de vouloir supprimer votre profile ?</h3>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                  <button type="submit" class="btn btn-primary" style="background: red; border: none; ">OUI</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+    <%});%>
+  </nav>
+
+
+  <!-- script -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+  <script src="/script.js"></script>

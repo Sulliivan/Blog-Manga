@@ -8,7 +8,9 @@ router.get('/admin', async (req, res) => {
     try {
         const id = req.params.postId
         // const articles = await query("SELECT postId, title, description, content,  image, dateCreated, status, userId, CategoryId FROM post WHERE postId =  '" + id + "';")
+        // const articles = await query("SELECT p.postId, p.title, p.description, p.content, p.image, p.dateCreated, p.status, p.backImage, u.userId, c.Name FROM post as p JOIN user as u on p.userId = u.userId JOIN Category as c on p.CategoryId = c.CategoryId WHERE postId = '"+ id +"';")
         const articles = await query("SELECT postId, title, description, content, image, dateCreated, status, userId, CategoryId FROM post ")
+    
         res.render("admin" , {
             articles
         })
@@ -47,7 +49,7 @@ router.post('/admin', async (req, res) => {
                     }
                     
                     try {
-                        await query("insert into post (title, content, description, status, image, backImage, userId, CategoryId, dateCreated) values (?, ?, ?, ?, ?, ?, ?, ?, NOW() );", [title, content, description, status, images, img, user, Category, dateCreated])
+                        await query("insert into post (title, content, description, status, image, backImage, userId, CategoryId, dateCreated) values (?, ?, ?, ?, ?, ?, 1, ?, NOW() );", [title, content, description, status, images, img, user, Category, dateCreated])
                             res.redirect("/dashboard/admin")
                     } catch (err) {
                         res.send(err)

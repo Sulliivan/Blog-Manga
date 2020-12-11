@@ -14,20 +14,21 @@ router.post('/account', async (req, res, ) => {
     const password = req.body.password
     const password2 = req.body.password2
     const emailQuery = "SELECT email FROM user WHERE email = '" + email + "';"
-
+//console.log(1);
     if (password2 === password) {
     try {
         const resultEmail = await query(emailQuery)
       if(resultEmail.length > 0) {
                 req.flash ('messageError', 'le compte existe deja'),
                 res.redirect("/create/account");
+//console.log(2);                
       }else{
           bcrypt.hash(password, 10, async (err, hash) =>{
               /* ajoute dans users */
                 await query ("INSERT INTO user (firstname, lastname, email, password, roleId, DateInscription ) VALUES ('" + firstname + "', '" + lastname + "', '"+ email +"', '" + hash +"', '2', NOW() )",);
                 res.redirect('/users/login')
             })    
-        }
+        }//console.log(3);
     }catch(err) {
         
         res.send(err)
@@ -35,7 +36,7 @@ router.post('/account', async (req, res, ) => {
  }else { 
     req.flash ('messageError', 'Mot de passe pas identique'),
     res.redirect("/create/account");
-}
+}//console.log(4);
 });
 
 
