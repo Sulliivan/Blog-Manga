@@ -1,0 +1,29 @@
+<%- include('./partials/navbarDashboard.ejs')-%>
+<link rel="stylesheet" href="/css/listeManga.css">
+
+<H1>listeManga</H1>
+
+<div class="container">
+    <h2>Liste des utilisateurs</h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">Id</div>
+        <div class="col col-2">Titre</div>
+        <div class="col col-3">Synopsis</div>
+        <div class="col col-4">Auteur</div>
+        <div class="col col-4">Category</div>
+        <div class="col col-4">Image</div>
+      </li>
+      <% ListeManga.forEach(function(entry) {%>
+      <li class="table-row">
+        <div class="col col-1" data-label="Job Id"><%=entry.mangaId%></div>
+        <div class="col col-3" data-label="Amount"><%=entry.title%></div>
+        <div class="col col-4" data-label="Payment Status"><%=entry.content%></div>
+        <div class="col col-1" data-label="Job Id"><%=entry.name%></div>
+        <div class="col col-4" data-label="Payment Status"><%=entry.genre%></div>
+        <div class="col col-1" data-label="Job Id"><%=entry.image%></div>
+      </li>
+      <%});%>
+    </ul>
+  </div>
+  
