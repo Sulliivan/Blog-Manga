@@ -1,126 +1,69 @@
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1em;
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: none; 
-    list-style: none;
-}
-
 body {
-    width: 100%;
-    position: absolute;
+    font-family: 'lato', sans-serif;
 }
-
-nav{
-    background: linear-gradient( rgba(0, 0, 0, 0.831), rgba(0, 0, 0, 0.363)),url("/images/manga.png") ;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-    width: 100vw;  
-    margin-bottom: 80px;
+.container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+}
+h2 small {
+    font-size: 0.5em;
+}
+.responsive-table li {
+    border-radius: 3px;
+    padding: 25px 30px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.navbar{
-    width: 90%;
-
-}
-
-
-.head{
-    color: white;
-    margin-left: 300px;
-    margin-top: 85px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: start;
-    flex-direction: column;
-    justify-content: space-around;
-}
-.titre{
-    font-weight: 600;
-    font-size: 70px;  
-}
-
-.logo{
-     margin-left: 80px;  
-}
-      
-
-.ul{
-    width: 700px;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-
-}
-
-.nav-link{
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-}
-
-.nav-link:hover{
-    border-left: white solid 4px;
-    color: white;
-    letter-spacing: 2px;
-}
-.nav-link span {
-    transition: all 0.3s;
-}
-
-.btnhead{
-    background: linear-gradient( rgba(0, 0, 0, 0.831), rgba(0, 0, 0, 0.363)) ;
-    border: white solid 2px;
-    margin-top: 15px;
-    color: white;
-    height: 40px;
-    width: 240px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.btnhead span{
-    transition: all 0.3s;
-}
-.btnhead:hover{
-    background: linear-gradient( rgba(0, 0, 0, 0.831), rgba(0, 0, 0, 0.363)) ;
-    color: white;
-    letter-spacing: 2px;
-}
-
-nav .card{
-    display: flex;
-    align-items: center;
-    background: linear-gradient( rgba(56, 56, 56, 0.004), rgba(0, 0, 0, 0.363)) ;
-    background-repeat: no-repeat;
-    color: white;
-    margin: inherit;
-}
-
-/* MODAL */
-
-.modal.fade{
-    top: 30%;
-}
-.modal-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 25px;
+}
+.responsive-table .table-header {
+    background-color: #95a5a6;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.responsive-table .table-row {
+    background-color: #fff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+.responsive-table .col-1 {
+    flex-basis: 10%;
+}
+.responsive-table .col-2 {
+    flex-basis: 40%;
+}
+.responsive-table .col-3 {
+    flex-basis: 25%;
+}
+.responsive-table .col-4 {
+    flex-basis: 25%;
+}
+@media all and (max-width: 767px) {
+    .responsive-table .table-header {
+        display: none;
+   }
+    .responsive-table li {
+        display: block;
+   }
+    .responsive-table .col {
+        flex-basis: 100%;
+   }
+    .responsive-table .col {
+        display: flex;
+        padding: 10px 0;
+   }
+    .responsive-table .col:before {
+        color: #6c7a89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+   }
 }

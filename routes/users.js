@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const session = require('express-session');
 const verifAuth = require('../middleware/auth.middleware');
-
+const session = require('express-session');
 //////////////////////////////////////////////////////
 //////////// Connexion d'un utilisateur  /////////////
 router.get('/login', function(req, res, next) {
@@ -26,6 +25,9 @@ router.post('/login',async (req, res) => {
             error: `Bcrypt Auth failed`
           });
         }
+        // console.log("password :", password);
+        // console.log("password :",result[0].password);
+        
         if (success) {
           await query('SELECT * FROM user WHERE email = ? AND password = ?', [email, result[0].password], function (err, results) {
             if (results.length) {
@@ -33,8 +35,8 @@ router.post('/login',async (req, res) => {
               req.session.userId = result[0].userId;
               req.session.firstname = result[0].firstname;
               req.session.email = result[0].email;
-              req.session.password = result[0].password;
               req.session.roleId = result[0].roleId;
+              req.session.DateInscription = result[0].roleId;
               req.session.cookie.expires = false;
               req.session.cookie.maxAge = 24 * 60 * 60 * 7 * 1000;
               res.redirect("/page/index")
@@ -81,7 +83,7 @@ router.put('/profil/:userId', async(req, res) => {
           return req.flash ('message', 'Mail ou Mot de passe incorrect'),
                 res.redirect('/users/login');
         } else  {
-          bcrypt.compare(password, result[0].password, async (err, success) => {
+          bcrypt.compare(mdp, result[0].password, async (err, success) => {
             if (err) {
               return res.status(401).json({
                 error: `Bcrypt Auth failed`
@@ -94,7 +96,6 @@ router.put('/profil/:userId', async(req, res) => {
                   req.session.userID = result[0].id;
                   req.session.userName = result[0].firstname;
                   req.session.email = result[0].email;
-                  req.session.password = result[0].password;
                   req.session.roles = result[0].rolesId;
                   req.session.cookie.expires = false;
                   req.session.cookie.maxAge = 24 * 60 * 60 * 7 * 1000;
@@ -122,6 +123,7 @@ router.delete('/profil/:userId', async (req, res) => {
         const user = await query ("DELETE FROM user WHERE userId = '"+ id +"';")
          req.session.destroy()
         res.redirect("/page/index");
+        console.log(user);
     }catch (err){
         res.send(err)
     }

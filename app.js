@@ -7,6 +7,7 @@ const express = require('express')
 const fileUpload = require('express-fileupload');
 const connectFlash = require('connect-flash')
 const session = require('express-session');
+const methodOverride = require('method-override'); // pouvoir transformer le nom des methodes dans Node
 
 
 ////////////////////////////////////////////////////////////
@@ -23,6 +24,7 @@ app.use(session({
 // Connect Flash
 app.use(connectFlash())  // utilise zone flash pour stocker des messages et les retrenscrires
 
+app.use(methodOverride('_method'))
 
 app.use(fileUpload());
 // .env

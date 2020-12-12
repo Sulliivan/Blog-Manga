@@ -1,38 +1,26 @@
 <%- include('./partials/navbarDashboard.ejs')-%>
+<link rel="stylesheet" href="/css/profil.css">
 
-
-<div class="page">
-  <div class="title">
-    <h1>Liste Utilisateurs</h1>
-  </div>
-    <div class="container">
-        <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-
-            <tbody>
-            <% users.forEach(function(entry) {%>
-              <tr>
-                <th><%=entry.userId%></th>
-                <td><%=entry.firstname%></td>
-                <td><%=entry.lastname%></td>
-                <td><%=entry.email%></td>
-              </tr>
-            <%});%>
-            </tbody>
-        </table>
-
-    </div>
+<div class="container">
+  <h2>Liste des utilisateurs</h2>
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">users Id</div>
+      <div class="col col-2">Name</div>
+      <div class="col col-3">Email</div>
+      <div class="col col-4">Date Register</div>
+    </li>
+    <% users.forEach(function(entry) {%>
+    <li class="table-row">
+      <div class="col col-1" data-label="Job Id"><%=entry.userId%></div>
+      <div class="col col-3" data-label="Amount"><%=entry.firstname%> <%=entry.lastname%></div>
+      <div class="col col-4" data-label="Payment Status"><%=entry.email%></div>
+      <div class="col col-1" data-label="Job Id"><%=entry.DateInscription%></div>
+    </li>
+    <%});%>
+  </ul>
 </div>
 
-
-
-  
+ 
   <%- include('./partials/footer')-%>
 
