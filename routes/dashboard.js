@@ -7,12 +7,13 @@ app.use(fileUpload());
 //////////////   DASHBOARD ARTICLE   //////////////
 //// Affiche les articles dans Dashboard Article Admin //////
 router.get('/admin', async (req, res) => {
-    try{
-        const id = req.params.postId
+    try {
         const articles = await query("SELECT postId, title, description, content, image, dateCreated, status, userId, CategoryId FROM post ")
-        res.render("admin", {articles, ListeManga});
-    }catch (err){
-        res.send(err )
+        res.render("admin" , {
+            articles
+        })
+    }catch(err){
+        res.send(err)
     }
 });
 
@@ -36,15 +37,14 @@ router.post('/admin', async (req, res) => {
             if (err) {
                 return res.status(500).send(err)
             }
-           
+        
             if (imageBack.mimetype === "image/jpeg" || imageBack.mimetype === "image/jpg" || imageBack.mimetype === "image/gif" || imageBack.mimetype === "image/png") {
                 imageBack.mv(`public/images/${imageBack.name}`, async function (err) {
                     if (err) {
                         return res.status(500).send(err);
                     }
-                    
                     try {
-                        await query("insert into post (title, content, description, status, image, backImage, userId, CategoryId, dateCreated) values (?, ?, ?, ?, ?, ?, 1, ?, NOW() );", [title, content, description, status, images, img, user, Category, dateCreated])
+                        await query("insert into post (title, content, description, status, image, backImage, userId, CategoryId, dateCreated) values (?, ?, ?, ?, ?, ?, 1, ?, NOW() );", [title, content, description, status, images, img, user, Category])
                             res.redirect("/dashboard/admin")
                     } catch (err) {
                         res.send(err)
@@ -100,7 +100,6 @@ router.put('/updateArticle/:postId', async(req, res) => {
         imageUpload.mv(`public/images/${imageUpload.name}`, async function (err) {
             if (err) {
              //   return res.status(500).send(err)
-             console.log(1);
              res.json("ok1")
             }
             if (imageBack.mimetype === "image/jpeg" || imageBack.mimetype === "image/jpg" || imageBack.mimetype === "image/gif" || imageBack.mimetype === "image/png") {
@@ -108,14 +107,13 @@ router.put('/updateArticle/:postId', async(req, res) => {
                     if (err) {
                        // return res.status(500).send(err); 
                        res.json("ok2")
-                       console.log(2);
+                
                     } 
                     try {
                          await query("UPDATE post SET image = '"+ images +"', backImage = '"+ img +"', title = '"+ title +"', content = '"+ content +"', description = '"+ description +"'  WHERE postId = '"+ id +"'; ")
                         //res.redirect("/dashboard/admin")
                         res.json("ok3")
-                        console.log(3);
-                        
+                       
                     } catch (err) {
                         //res.send(err) 
                         res.json("ok4")
@@ -190,7 +188,6 @@ router.put('/updateArticle/:postId', async(req, res) => {
 
 router.get('/listeManga', async (req, res) => {
     try {
-        const id = req.params.mangaId
         const ListeManga = await query("SELECT m.mangaId, m.title, m.image, m.content, m.dateCreated, a.name, mc.name as genre FROM manga as m JOIN mangaCategory as mc on m.mangaCategoryId = mc.mangaCategoryId JOIN author as a on m.authorId = a.authorId WHERE mangaId;")
         res.render("listeManga", ({
             ListeManga,
@@ -202,27 +199,29 @@ router.get('/listeManga', async (req, res) => {
     }
 });
 
+
 // Creer la liste des manga //
 router.post('/listeManga', async (req, res) => {
 
-    let MangaId = req.body.MangaId
     let title = req.body.title
     let content = req.body.content
     let dateCreated = req.body.dateCreated
     let authorId = req.body.authorId
     let mangaCategoryId = req.body.mangaCategoryId
     let imageUpload = req.files.image
-    let image = `/images/${imageUpload.name}`
-
+    let images = `/images/${imageUpload.name}`
+    console.log(0);
     if (imageUpload.mimetype === "image/jpeg" || imageUpload.mimetype === "image/jpg" || imageUpload.mimetype === "image/gif" || imageUpload.mimetype === "image/png") {
         imageUpload.mv(`public/images/${imageUpload.name}`, async function (err) {
             if (err) {
-                return res.status(500).send(err);
-            }
+                return res.status(500).send(err)
+            }console.log(11);
             try {                                  
-                await query ('INSERT INTO manga (MangaId, title, content, dateCreated, authorId, mangaCategoryId, image) VALUES (?,?,?,now(),?,?,? );', [MangaId, title, content, dateCreated, authorId, mangaCategoryId, image])
+                await query ("INSERT INTO manga (title, content, dateCreated, authorId, mangaCategoryId, image) VALUES (?,?,now(),5,?,?);", [title, content, mangaCategoryId, images])
                     req.flash('MessageSuccess', 'ajouté à la liste')
                     res.redirect("/dashboard/listeManga")
+                    res.json('ajouté')
+                    console.log(22);
             } catch (err) {
                 req.flash('MessageError', 'Error')
                 res.redirect("/dashboard/listeManga")
@@ -233,7 +232,7 @@ router.post('/listeManga', async (req, res) => {
 
 /* delete une ligne Liste */
 
-router.delete('/dashboardListeManga/:mangaId', async (req, res) => {
+router.delete('/ListeManga/:mangaId', async (req, res) => {
     try {
         const id = req.params.mangaId
         const ListeManga = await query("DELETE FROM manga WHERE mangaId = '" + id + "';")

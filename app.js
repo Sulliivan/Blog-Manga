@@ -84,7 +84,7 @@ app.use (function (req, res, next){
 // URL
 app.use('/singlePage', verifAuth, singleRouter);
 app.use('/page', pageRouter);
-app.use('/dashboard', verifAuthAdmin, dashboardRouter);
+app.use('/dashboard', dashboardRouter);
 app.use('/users', usersRouter);
 app.use('/create', createRouter);
 
