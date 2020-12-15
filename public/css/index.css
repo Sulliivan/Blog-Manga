@@ -14,6 +14,12 @@
     height: auto;
     width: 100%;
 }
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .card-body {
     margin-left: auto;
     margin-right: auto;
@@ -22,11 +28,6 @@
 
 /* Video */
 
-.ParaVedio{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 video {
     width: 100vw;
   }
@@ -69,6 +70,9 @@ video {
     align-items: center;
     flex-wrap: wrap;
 }
+.carte{
+    margin: 15px;
+}
 
 .carte a, p {
     height: 50px;
@@ -76,6 +80,7 @@ video {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    margin: 5px;
 }
 
 /* Modal ----------------- */
@@ -90,6 +95,5 @@ video {
 .paragraphe{
     height: min-content;
 }
-
 
 

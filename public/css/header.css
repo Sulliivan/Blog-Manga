@@ -8,25 +8,30 @@
     font-style: normal;
     text-decoration: none; 
     list-style: none;
-    
 }
 
 body {
-    width: 100%;
+    width: 100vw;
     position: absolute;
+    /* overflow-x: hidden; */
 }
 
-
-
 /*---- Navbar ----*/
-.navbar{
+.navbar-nav{
+    width: 90% !important;
     display: flex;
-    align-items: flex-start;
+    justify-content: flex-end !important;
+}
+
+.navbar{
+    /* border: solid red; */
+    display: flex;
+    align-items: baseline;
     flex-direction: column;
     background: linear-gradient( rgba(0, 0, 0, 0.831), rgba(0, 0, 0, 0.363)),url("/images/manga.png") ;
     background-repeat: round;
     background-position: center;
-    height: 800px;
+    height: 700px;
     width: 100%;  
     margin-bottom: 80px;
     background-attachment: fixed;
@@ -38,6 +43,14 @@ body {
 .container{
     max-width: 100vw;
 }
+.container-fluid{
+    /* border:solid yellow; */
+    position: fixed;
+    width: 100vw;
+    margin-left: -16px;
+    margin-top: -7px;
+    background :linear-gradient( rgba(121, 121, 121, 0.831), rgba(50, 50, 50, 0));
+}
 
 .navbar-nav{
     width: 700px;
@@ -46,7 +59,6 @@ body {
     justify-content: center;
     
 }
-
 .nav-link{
     color: white;
     font-weight: 600;
@@ -56,7 +68,6 @@ body {
     display: flex;
 
 }
-
 .nav-link:hover{
     border-left: white solid 4px;
     color: white;
@@ -71,16 +82,35 @@ body {
 /*---- paragraphe ----*/
 
 .media{
+    /* border: solid green; */
+    margin-left: 87px;
+    margin-bottom: 80px;
+    width: auto;
+    height: auto;
     color: white;
-    margin-left: 300px;
-    margin-top: 105px;
     display: flex;
     align-items: flex-start;
     justify-content: start;
     flex-direction: column;
     justify-content: space-around;
-
+    margin-top: auto;
 }
+.media-body{
+    display: flex;
+    flex-direction: column;
+}
+.media-body a {
+    text-align: end;
+}
+
+.btn {
+    /* border: solid red; */
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
 .mt-0{
     font-weight: 600;
     font-size: 70px;  

@@ -1,11 +1,15 @@
 body {
     font-family: 'lato', sans-serif;
+    overflow-x: hidden;
 }
+.container{
+margin-top: 40px;
+}
+
 .container2 {
-    max-width: 1400px;
+    max-width: 1350px;
     margin-left: auto;
     margin-right: auto;
-
 }
 h2 {
     font-size: 26px;
@@ -19,7 +23,7 @@ h2 small {
     border-radius: 3px;
     padding: 25px 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: ;
     margin-bottom: 25px;
 }
 .responsive-table .table-header {
@@ -36,23 +40,21 @@ h2 small {
     flex-basis: 3%;
 }
 .responsive-table .col-2 {
-    flex-basis: 10%;
+    flex-basis: 14%;
 }
 .responsive-table .col-3 {
-    flex-basis: 10%;
+    flex-basis: 14%;
 }
 .responsive-table .col-4 {
-    flex-basis: 10%;
+    flex-basis: 35%;
 }
 .responsive-table .col-5 {
-    flex-basis: 10%;
+    flex-basis: 12%;
 }
 .responsive-table .col-6 {
-    flex-basis: 17%;
+    flex-basis: 11%;
 }
-.responsive-table .col-7 {
-    flex-basis: 10%;
-}
+
 @media all and (max-width: 767px) {
     .responsive-table .table-header {
         display: none;

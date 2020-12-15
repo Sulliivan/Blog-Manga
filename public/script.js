@@ -8,7 +8,6 @@ function openmodal(manga){
   }
 
 
-
 /* Search BAR */
   
   function myFunction() {

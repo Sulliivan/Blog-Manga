@@ -188,9 +188,11 @@ router.put('/updateArticle/:postId', async(req, res) => {
 
 router.get('/listeManga', async (req, res) => {
     try {
+        const author = await query ("SELECT * FROM author")
         const ListeManga = await query("SELECT m.mangaId, m.title, m.image, m.content, m.dateCreated, a.name, mc.name as genre FROM manga as m JOIN mangaCategory as mc on m.mangaCategoryId = mc.mangaCategoryId JOIN author as a on m.authorId = a.authorId WHERE mangaId;")
         res.render("listeManga", ({
             ListeManga,
+            author,
             messageSuccess: req.flash('MessageSuccess'),
             MessageError: req.flash('MessageError'),
         }));
@@ -217,10 +219,10 @@ router.post('/listeManga', async (req, res) => {
                 return res.status(500).send(err)
             }console.log(11);
             try {                                  
-                await query ("INSERT INTO manga (title, content, dateCreated, authorId, mangaCategoryId, image) VALUES (?,?,now(),5,?,?);", [title, content, mangaCategoryId, images])
+                await query ("INSERT INTO manga (title, content, dateCreated, authorId, mangaCategoryId, image) VALUES (?,?,now(),?,?,?);", [title, content, mangaCategoryId, images])
                     req.flash('MessageSuccess', 'ajouté à la liste')
                     res.redirect("/dashboard/listeManga")
-                    res.json('ajouté')
+                    
                     console.log(22);
             } catch (err) {
                 req.flash('MessageError', 'Error')
@@ -259,8 +261,6 @@ router.get('/users', async (req, res) => {
         res.send(err)
     }
 });
-
-
 
 
 module.exports = router;
