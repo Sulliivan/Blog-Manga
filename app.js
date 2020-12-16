@@ -14,6 +14,7 @@ const methodOverride = require('method-override'); // pouvoir transformer le nom
 
 
 // Express-session  
+// Mise en place du Cookie
 app.use(session({
   secret: 'shhuuuuut',
   resave: false,
@@ -58,15 +59,14 @@ const query = util.promisify(db.query).bind(db);
 global.query = query;
 ////////////////////////////////////////////////////////////
 
-// Router
-const singleRouter = require ('./routes/singlePage'); // page d'un article
-const pageRouter = require ('./routes/page'); // page principal
-const dashboardRouter = require ('./routes/dashboard.js'); // page admin
-const usersRouter = require ('./routes/users'); // page connection d'un user
-const createRouter = require ('./routes/create'); // page d'inscription
+// Controllers
+const singleRouter = require ('./controller/singlePage'); // page d'un article
+const pageRouter = require ('./controller/page'); // page principal
+const dashboardRouter = require ('./controller/dashboard.js'); // page admin
+const usersRouter = require ('./controller/users'); // page connection d'un user
+const createRouter = require ('./controller/create'); // page d'inscription
 const verifAuth = require('./middleware/auth.middleware');
 const verifAuthAdmin = require ('./middleware/admin.middleware')
-
 
 app.use (function (req, res, next){
   const userID = req.session.userId

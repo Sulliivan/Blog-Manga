@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/css/DashMessage.css">
+
+
+<h1> Message </h1>
+    <div class="container">
+     <hr>
+
+     <% if(messageSuccess.length > 0) { %>
+        <div class="alert alert-success">
+          <%= messageSuccess%>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+      <%}%>
+
+            <% Contact.forEach(function(entry) {%>
+            <div class="card-body">
+                        <h5 class="card-title"><%=entry.name%> - <%=entry.email%> </h5>
+                        <p class="card-phone"><%-entry.phone%></p>
+                        <h6 class="card-subtitle mb-2 text-muted">Reçu le <%=entry.date%></h6>
+                        <p class="card-text"><%-entry.message%></p>
+                            <form class="art" action="/dashboard/message/<%=entry.id%>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn-delete" name="id">supprimer</button>
+                            </form>
+                        </div>
+            <%});%>
+            
+    </div>

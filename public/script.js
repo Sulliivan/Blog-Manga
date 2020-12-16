@@ -4,8 +4,10 @@ function openmodal(manga){
     const Manga = JSON.parse(manga)
     const description = document.getElementById('modalDescription')
     description.innerHTML = Manga.content
-    $('#exampleModal').modal('show')
+    console.log(manga);
+    $('#openmodal').modal('show')
   }
+
 
 
 /* Search BAR */
