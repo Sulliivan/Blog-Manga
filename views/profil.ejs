@@ -20,27 +20,31 @@
 
 <body>
   <!-- nav bar -->
-  <nav>
-    <div class="navbar">
-      <div class="logo">
-        <a href="/page/index"><img src="/images/logoBlanc.png" alt="logo"></a>
-      </div>
-
-      <ul class="ul">
-        <% if (usersession.userID > 0) { %>
-        <li><a class="nav-link" href="/users/profil/<%=usersession.userID%>">Bonjour <%= usersession.userNAME %></a>
-        </li>
-        <li><a class="nav-link" href="/users/logout">Logout</a></li>
+  
+<nav class="navbar navbar-expand-lg " style="background-color: rgb(199, 199, 199);">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/page/index"> <img src="/images/logoBlanc.png" alt="logo"></a>
+    
+    <div class="navbar-nav" style="width: 150px;">
+      <div class="navbar-nav">
+        <% if (usersession.userID != undefined) { %>
+        <a class="nav-link" href="/users/profil/<%= usersession.userID%>">Bonjour <%= usersession.userNAME%></a>
+        <a class="nav-link" href="/users/logout">Logout</a>
+        <% if (usersession.userROLES === 1) {%>
+        <a class="nav-link" href="/dashboard/admin">Admin</a>
         <% }else  {%>
-        <li><a class="nav-link" href="/users/login">Login</a></li>
         <% } %>
-      </ul>
+        <% }else  {%>
+        <a class="nav-link" href="/users/login">Login</a>
+        <% } %>
+      </div>
     </div>
+  </div>
+</nav>
 
-
-    <!-- card du user-->
+<!-- card du user-->
     <% profil.forEach(function(entry) {%>
-    <div class="card" style="width: 20rem; height: 600px;">
+    <div class="card" style="width: 25rem; height: 600px;">
       <img src="/images/avatar.jpg" class="card-img-top" alt="..." style="width: 15rem;">
       <div class="card-body">
         <p class="card-text">PRENOM : <%=entry.firstname%></p>

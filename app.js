@@ -4,14 +4,12 @@ const express = require('express')
 ,     util = require('util')
 ,     path = require('path')
 ,     port = 3000
-const fileUpload = require('express-fileupload');
-const connectFlash = require('connect-flash')
-const session = require('express-session');
-const methodOverride = require('method-override'); // pouvoir transformer le nom des methodes dans Node
-
+,     fileUpload = require('express-fileupload')
+,     connectFlash = require('connect-flash')
+,     session = require('express-session')
+,     methodOverride = require('method-override') // pouvoir transformer le nom des methodes dans Node
 
 ////////////////////////////////////////////////////////////
-
 
 // Express-session  
 // Mise en place du Cookie
@@ -29,7 +27,7 @@ app.use(methodOverride('_method'))
 
 app.use(fileUpload());
 // .env
-require('dotenv').config() // utiliser le fichier env qui est un fichier
+require('dotenv').config() // utiliser le fichier env qui est un fichier caché
 // Middleware - Parser
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
@@ -37,9 +35,7 @@ app.use(express.urlencoded({extended: false}))
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 ////////////////////////////////////////////////////////////
-
 
 // MySQL Connection à la base de donnée
 const db =  mysql.createConnection(
@@ -72,7 +68,6 @@ app.use (function (req, res, next){
   const userID = req.session.userId
   const userNAME = req.session.firstname
   const userROLES = req.session.roleId
-
 // console.log(req.session.firstname,"firstname");
 // console.log(req.session.userId,"user");
 // console.log(req.session.roleId,"role");
@@ -82,17 +77,15 @@ app.use (function (req, res, next){
 })
 
 // URL
-app.use('/singlePage', verifAuth, singleRouter);
+app.use('/singlePage', singleRouter);
 app.use('/page', pageRouter);
 app.use('/dashboard', verifAuthAdmin, dashboardRouter);
 app.use('/users', usersRouter);
 app.use('/create', createRouter);
-
 ////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
 ///////////////Login - Logout////////////////////
-
 
 app.use('*', (req, res, next)=>{
   res.locals.message = req.session.message

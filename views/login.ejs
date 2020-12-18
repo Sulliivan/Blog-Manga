@@ -4,16 +4,19 @@ integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ
 
 
 <div class="page">
+  <div class="headerContent">
+    <div class="logo">
+      <a href="/page/index"><img src="/images/Best-Logo2.png" alt="logo"></a>
+    </div>
+    <div class="pass">
+      <a href="#" data-target="#pwdModal" data-toggle="modal">Forgot my password</a>
+    </div>
+</div>  
 <div class="container">
     <form method="POST" action="/users/login"> 
-      <div class="headerContent">
-          <div class="logo">
-            <a href="/page/index"><img src="/images/MangaViolet.png" alt="logo"></a>
-          </div>
-          <div class="pass">
-            <a href="#" data-target="#pwdModal" data-toggle="modal">Forgot my password</a>
-          </div>
-      </div>  
+    <form role="form" action="/users/login" method="POST" enctype="multipart/form-data">
+
+      
 
       <% if(messageSuccess .length > 0) { %>
         <div class="alert alert-danger">
@@ -24,12 +27,25 @@ integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ
       
           <div class="form-group">
             <h1>Connexion</h1>
-              <label for="exampleInputEmail1">Email Address</label>
-              <input type="email" class="form-control" name="email">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" name="password">
 
-              <button type="submit" class="btn">Connexion</button>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Email Address</label>
+                <input type="email" class="form-control" placeholder="Email Address" name="email" id="email">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Mot de passe</label>
+                <input type="tel" class="form-control" placeholder="Mot de passe" name="password">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+<br>
+            <div id="success"></div>
+            <button type="submit" class="btn btn-primary" style="text-align: end;" id="Inscription">Connexion</button>
+          
           </div>
     </form>
 </div>

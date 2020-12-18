@@ -1,10 +1,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<link rel="stylesheet" href="/css/register.css">
+<link rel="stylesheet" href="/css/account.css">
 
-<div class="logo">
-  <a href="/page/index"><img src="/images/logo.png" alt="logo"></a>
-</div>
 
   <div class="page">
       <div class="container">
@@ -14,36 +11,59 @@
               <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <%= messageError %>
-              </div>
+              </div>#0085a1
             <%}%> 
-       
-                  <div class="form-group">
-                    <h1>Creer un compte</h1>
-                      <label for="exampleInputEmail1">Prenom</label>
-                      <input type="text" class="form-control" name="firstname">
-                      <label for="exampleInputEmail1">Nom</label>
-                      <input type="text" class="form-control" name="lastname">
-                      <label for="exampleInputEmail1">Email Address</label>
-                      <input type="email" class="form-control" name="email">
-                      <label for="exampleInputPassword1">Mot de passe</label>
-                      <input type="password" class="form-control" name="password">
-                      <label for="exampleInputPassword1">Valider Mot de passe</label>
-                      <input type="password" class="form-control" name="password2">
-                    </div>
-                    <button type="submit" class="btn ">Créer compte</button>
-                </div>
 
-            </form>
+        <!-- Formulaire de Inscription -->
+<form role="form" action="/page/index" method="POST" enctype="multipart/form-data">
+  <div class="container" style="margin-top: 100px;">
+    <h1 style="text-align: center; text-transform: uppercase;margin-bottom: 30px;">Inscription</h1>
+    <div class="row">
+        <form name="createAccount" id="contactForm" novalidate>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Nom</label>
+              <input type="text" class="form-control" placeholder="Name" name="firstname">
+              <p class="help-block text-danger"></p>
+            </div>
           </div>
-        </div>
-    
-
-
-        <!-- Rassurez-vous, Goku n’est pas mort, vous ne vous êtes pas fait spoiler. Il s’agissait néanmoins de comprendre là où je souhaitais réellement en venir. En somme, les épisodes de Dragon Ball sont scindés en deux parties, entrecoupés d’un petite interlude au milieu. Celui-ci intervient à, environ, la moitié de l’épisode. Néanmoins, parfois, le titre vous spoile tellement que les dix premières minutes de l’épisode ne servent à rien.
-
-Exemple, et je choisis volontairement un exemple assez éloigné pour que ceux qui sont en retard puissent suivre le rythme : épisode 104. Je vous la refais grosso-modo. L'un des Prime Troopers, Dyspo, défie Hit en duel. On assiste alors à un combat plutôt badass entre deux protagonistes du tournoi, où chacun use de stratégie pour faire tomber l’autre. Alors que Hit parvient à faire tomber son adversaire en dehors des limites du terrain, Kunshi, un autre membre de l’univers 11, se ramène pour sauver son pote. A partir de là, les deux s’associent pour filer une sacrée déculottée à Hit. Sauf que… Goku intervient à son tour, vers la moitié de l’épisode, et fait équipe avec Hit pour les combattre.
-Voilà. Maintenant, je vous mets le titre de l’épisode : "L'éclosion d'une bataille plus rapide que la lumière ! L'alliance de Goku et Hit !!". POUR-QUOI. Tout l’épisode est absolument gâché, anéanti, bafoué. Et pourtant : il est très bon ! On est spoilés du début à la fin, on sait tout. Tout sur tout. On sait que Dyspo ne va pas se faire éliminer que son pote va le sauver puisqu’il va combattre à la vitesse de la lumière. Et quand Hit se fait rétamer, on sait aussi que Goku va arriver en mode badass pour les dégommer. Alors, diantre, pourquoi ?
- -->
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Prenom</label>
+              <input type="text" class="form-control" placeholder="Name" name="lastname">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Email Address</label>
+              <input type="email" class="form-control" placeholder="Email Address" name="email" id="email">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>Mot de passe</label>
+              <input type="tel" class="form-control" placeholder="Mot de passe" name="password">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>Valider Mot de passe</label>
+              <input type="tel" class="form-control" placeholder="Valider Mot de passe" name="password2">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+        
+          <br>
+          <div id="success"></div>
+          <button type="submit" class="btn btn-primary" id="Inscription">s'inscrire</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</form>
 
 
 
