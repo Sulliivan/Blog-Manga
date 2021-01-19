@@ -1,42 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100" style="background: linear-gradient( rgba(19, 19, 19, 0.461), rgba(23, 23, 23, 0.016)) !important;">
+  <a class="navbar-brand" href="/page/index"> <img src="/images/logoBlanc.png" alt="logo" width="90px"> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="color: white !important;">
+    <span> <i class="fas fa-bars"></i></span>
+  </button>
 
-<nav class="navbar navbar-expand-lg " style="background-color: rgb(199, 199, 199);">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/page/index"> <img src="/images/logoBlanc.png" alt="logo"></a>
-    
-    <div class="navbar-nav" style="width: 150px;">
-      <div class="navbar-nav">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
         <% if (usersession.userID != undefined) { %>
-        <a class="nav-link" href="/users/profil/<%= usersession.userID%>">Bonjour <%= usersession.userNAME%></a>
+          <a class="nav-link" href="/users/profil/<%= usersession.userID%>">Bonjour <%= usersession.userNAME%></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/users/logout">Logout</a>
-        <% if (usersession.userROLES === 1) {%>
+      </li>
+      <% if (usersession.userROLES === 1) {%>
+      <li class="nav-item">
         <a class="nav-link" href="/dashboard/admin">Admin</a>
-        <% }else  {%>
+      </li>
+      <% }else  {%>
         <% } %>
         <% }else  {%>
+      <li class="nav-item">
         <a class="nav-link" href="/users/login">Login</a>
-        <% } %>
-      </div>
-    </div>
+      </li>
+      <% } %>
+    </ul>
   </div>
-
-  <div class="media">
-    <div class="media-body">
-      <div class="example">Welcome</div>
-      <br>
-      <p>
-        <br>
-        Bienvenue sur le site manga qui repertorie vos animées préférés. <br>
-        Si vous ne connaissez pas les manga, c'est ici que votre addiction commencera. <br>
-        Tu veux découvrir l'univers ?</p>
-
-      <div class="btn">
-        <a class="btnhead" href="/create/account"> Inscrit toi ! </a>
-      </div>
-    </div>
-  </div>
-
 </nav>
 
 
+<div class="jumbotron">
+  <div class="text">
+  <h1>Welcome</h1>
+  <br>
+  <br>
+  <p>
+    <br>
+    Bienvenue sur le site manga qui repertorie vos animées préférés. <br>
+    Si vous ne connaissez pas les manga, c'est ici que votre addiction commencera. <br>
+    Tu veux découvrir l'univers ?</p>
+    <br><br>
+    <p><a class="btnhead" href="/create/account" style="text-align:end ;"> Inscrit toi ! </a></p>
+  </div>
+  </div>
+
+
+
 </div>
 </div>
+
+<script src="https://kit.fontawesome.com/c633fbfc2f.js" crossorigin="anonymous"></script>

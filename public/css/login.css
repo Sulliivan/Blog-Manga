@@ -31,6 +31,17 @@ blockquote {
     font-style: italic;
     color: #868e96
 }
+/* probleme */
+.raccourcitextetextSnippetPanelList {
+    visibility: hidden;
+    display: none;
+  }   
+  
+  .raccourcitextetextSnippetOpenButton {
+    visibility: hidden;
+    display: none;
+  }
+   /* -------------------------------- */
 
 .section-heading {
     font-size: 36px;

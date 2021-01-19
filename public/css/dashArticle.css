@@ -15,6 +15,19 @@ body{
     float: left ;
     background-color: #e4e4e4;
 }
+
+/* probleme */
+.raccourcitextetextSnippetPanelList {
+    visibility: hidden;
+    display: none;
+  }   
+  
+  .raccourcitextetextSnippetOpenButton {
+    visibility: hidden;
+    display: none;
+  }
+   /* -------------------------------- */
+
 /* section formulaire pour POST -------------------------------  */
 
 .content{

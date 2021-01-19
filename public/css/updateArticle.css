@@ -7,6 +7,18 @@ form{
     margin: 80px;
 }
 
+/* probleme */
+.raccourcitextetextSnippetPanelList {
+    visibility: hidden;
+    display: none;
+  }   
+  
+  .raccourcitextetextSnippetOpenButton {
+    visibility: hidden;
+    display: none;
+  }
+/* -------------------------------- */
+
 
 .photo{
     margin-top: -180px;

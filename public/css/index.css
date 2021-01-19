@@ -18,6 +18,7 @@ body {
 p {
     line-height: 1.5;
     margin: 30px 0
+    
 }
 
 p a {
@@ -31,7 +32,8 @@ h4,
 h5,
 h6 {
     font-weight: 800;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #212529;
 }
 
 a {
@@ -47,10 +49,15 @@ blockquote {
     font-style: italic;
     color: #868e96
 }
+/* probleme */
+
+   /* -------------------------------- */
+
 .section1{
     height: auto;
     width: 100%;
 }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -60,7 +67,17 @@ blockquote {
 .card-body {
     margin-left: auto;
     margin-right: auto;
-    
+   
+}
+
+.card-body h2{
+    color: black;
+}
+.card-body h2{
+    color: black;
+}
+.card-body h2:hover {
+    color: #0085a1
 }
 
 /* Video */
@@ -69,9 +86,6 @@ video {
     width: 100vw;
    
   }
-
-
-
 
 /* 2eme Parties card  ----------------- */
 .section2 {
@@ -92,6 +106,12 @@ video {
     align-items: center;
     font-size: 20px;
 }
+
+@media only screen and (min-width:350px) {
+    .titre {
+        display: flex;
+        flex-direction: column;
+    }
 
 .landing-section {
     height: auto;
@@ -138,35 +158,6 @@ video {
 
 /* FORMULAIRE DE CONTACT */
 
-
-p a {
-    text-decoration: underline
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 800;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
-}
-
-a {
-    color: #212529;
-    transition: all .2s
-}
-
-a:focus,
-a:hover {
-    color: #0085a1
-}
-
-blockquote {
-    font-style: italic;
-    color: #868e96
-}
 
 .section-heading {
     font-size: 36px;
@@ -534,4 +525,5 @@ form .form-group:first-child .floating-label-form-group {
 .btn-lg {
     font-size: 16px;
     padding: 25px 35px
+}
 }

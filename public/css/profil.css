@@ -1,3 +1,15 @@
+/* probleme */
+.raccourcitextetextSnippetPanelList {
+    visibility: hidden;
+    display: none;
+  }   
+  
+  .raccourcitextetextSnippetOpenButton {
+    visibility: hidden;
+    display: none;
+  }
+   /* -------------------------------- */
+
 /*---- Navbar ----*/
 .navbar-nav{
     width: 90% !important;

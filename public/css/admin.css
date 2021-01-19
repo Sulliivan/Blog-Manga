@@ -1,3 +1,13 @@
+.raccourcitextetextSnippetPanelList {
+    visibility: hidden;
+    display: none;
+}   
+
+.raccourcitextetextSnippetOpenButton {
+    visibility: hidden;
+    display: none;
+}
+
 /* Partie CREATE ARTICLE */
 .page{
     margin-top: 50px;

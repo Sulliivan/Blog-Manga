@@ -1,6 +1,7 @@
-const express = require('express')
+// Initialisation des modules avec requires
+const express = require('express') 
 ,     app = express()
-,     mysql = require('mysql')
+,     mysql = require('mysql') 
 ,     util = require('util')
 ,     path = require('path')
 ,     port = 3000
@@ -8,8 +9,10 @@ const express = require('express')
 ,     connectFlash = require('connect-flash')
 ,     session = require('express-session')
 ,     methodOverride = require('method-override') // pouvoir transformer le nom des methodes dans Node
+,     robots = require ('express-robots-txt')
 
-////////////////////////////////////////////////////////////
+// Robot.txt
+app.use(robots({ UserAgent: '*', Disallow: '/login' }))
 
 // Express-session  
 // Mise en place du Cookie
@@ -20,6 +23,7 @@ app.use(session({
   name: 'biscuit',
   cookie: {  maxAge: 24 * 60 * 60 * 7 * 1000}
 }))
+
 // Connect Flash
 app.use(connectFlash())  // utilise zone flash pour stocker des messages et les retrenscrires
 
@@ -28,9 +32,11 @@ app.use(methodOverride('_method'))
 app.use(fileUpload());
 // .env
 require('dotenv').config() // utiliser le fichier env qui est un fichier caché
+
 // Middleware - Parser
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+
 // EJS moteur de templating avec utilisation des fichier statique
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -40,13 +46,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // MySQL Connection à la base de donnée
 const db =  mysql.createConnection(
   {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_DATABASE
+    host: process.env.DB_HOST, // nom du serveur
+    user: process.env.DB_USER, // nom de l'utilisateur
+    password: process.env.DB_PASS, // Mot de passe
+    database: process.env.DB_DATABASE // base de donnée
   });
 
-db.connect((err) => {
+db.connect((err) => {  // fonction connect pour ce connécter à la base de donnée
     if (err) { throw err;}
     console.log('Connecté au serveur MySQL');
 });
@@ -61,8 +67,8 @@ const pageRouter = require ('./controller/page'); // page principal
 const dashboardRouter = require ('./controller/dashboard.js'); // page admin
 const usersRouter = require ('./controller/users'); // page connection d'un user
 const createRouter = require ('./controller/create'); // page d'inscription
-const verifAuth = require('./middleware/auth.middleware');
-const verifAuthAdmin = require ('./middleware/admin.middleware')
+const verifAuth = require('./middleware/auth.middleware'); // middleware pour visiteur
+const verifAuthAdmin = require ('./middleware/admin.middleware') // middleware pour admin
 
 app.use (function (req, res, next){
   const userID = req.session.userId
@@ -77,11 +83,11 @@ app.use (function (req, res, next){
 })
 
 // URL
-app.use('/singlePage', singleRouter);
-app.use('/page', pageRouter);
-app.use('/dashboard', verifAuthAdmin, dashboardRouter);
-app.use('/users', usersRouter);
-app.use('/create', createRouter);
+app.use('/singlePage',  singleRouter);  // page d'un article
+app.use('/page', pageRouter); // page principal
+app.use('/dashboard', verifAuthAdmin, dashboardRouter); // page admin
+app.use('/users', usersRouter); // page connection d'un user
+app.use('/create', createRouter); // page d'inscription
 ////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////

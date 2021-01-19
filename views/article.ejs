@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="/css/article.css">
 
 <!-- Article -->
-
     <div class="container">
       <% articles.forEach(function(entry) {%>
       <div class="photo">
@@ -17,13 +16,16 @@
   
   <!-- espace commentaire  -->
   <section class="commentaire">
-   <form role="form" action="/singlePage/article/:postId" method="POST">
+    <% articles.forEach(function(entry) {%>
+   <form role="form" action="/singlePage/article/<%=entry.postId%>" method="POST">
         <div class="container2" style="margin-top: 100px; margin-bottom: 50px;">
           <h1 style="text-align: center; text-transform: uppercase;margin-bottom: 30px;">Commentaire</h1>
           <div class="row">
             <div class="col-lg-8 col-md-12 mx-auto">
                 <div class="control-group">
                   <div class="form-group floating-label-form-group controls">
+                    <input type="text" value="<%=entry.postId%> " name="postId" style="display: none;">
+                    <input type="text" value="<%= usersession.userID%> " name="userId" style="display: none;">
                     <input type="text" class="form-control" placeholder="Ajouter un comentaire" name="content">
                     <p class="help-block text-danger"></p>
                     <button type="submit" class="btn btn-primary" id="sendMessageButton">Ajouter Commentaire</button>
@@ -33,6 +35,8 @@
            </div>
         </div>
         <br>
+    </form>
+        <%});%>
 
         <%commentaire.forEach(function(entry) {%>
           <div class="row">
@@ -47,13 +51,7 @@
         </div>
       </div>
           <%});%>
-
-    </form>
-  
-            
-
-            
-
+          
 </section>
             
      
